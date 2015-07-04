@@ -2,14 +2,18 @@ syntax on
 set background=dark
 let g:solarized_termtrans=1
 set ruler
-set cc=80
+set cc=100
 highlight ColorColumn ctermbg=lightgray guibg=lightgray
-colorscheme gummybears
+colorscheme harlequin
+set antialias
+set guifont=Monaco:h14
+
+hi ColorColumn ctermbg=8
 
 imap jj <Esc>
 filetype off
 set nocompatible
-
+set backspace=2
 set ignorecase
 set hlsearch
 set incsearch
@@ -20,6 +24,14 @@ set si
 map <space> /
 map <c-space> ?
 nnoremap <CR> :nohlsearch<cr>
+
+let mapleader = ","
+let g:mapleader = ","
+
+map <Leader>gb <Esc>:Gblame<CR>
+map <Leader>vs <Esc>:vsplit<CR>
+map <Leader>hs <Esc>:split<CR>
+map <Leader>gg 0v$<Left>y:!git diff HEAD ^master -- <c-r>"<cr>
 
 set backup
 set backupdir=~/.vim/backup
@@ -37,8 +49,6 @@ set expandtab
 
 set list
 set listchars=tab:♪\ ,trail:∘
-let mapleader = ","
-let g:mapleader = ","
 
 set laststatus=2
 set t_Co=256
@@ -46,11 +56,13 @@ set t_Co=256
 autocmd BufRead,BufNewFile *.tpl        set filetype=html
 
 let g:Powerline_symbols = 'fancy'
-let g:ctrlp_user_command=['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_user_command=['.git/', 'cd %s && git ls-files . -co --exclude-standard | grep -v node_modules']
 
 "let g:Powerline_theme = 'solarized256'
 "let g:Powerline_stl_path_style = 'full'
 
+"javac syntastic classpath definition
+let g:syntastic_java_javac_classpath = "~/map_to_object/src/**:/Library/Java/Extensions/*.jar"
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
@@ -96,15 +108,19 @@ let g:Powerline_symbols_override = {
         \ 'LINE': 'L',
         \ }
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'ctrlp.vim'
-Bundle 'ack.vim'
-Bundle 'git://github.com/Lokaltog/vim-powerline.git'
-Bundle 'fugitive.vim'
-Bundle 'Syntastic'
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'ctrlp.vim'
+Plugin 'ack.vim'
+Plugin 'git://github.com/Lokaltog/vim-powerline.git'
+Plugin 'fugitive.vim'
+Plugin 'Syntastic'
+Plugin 'bufexplorer.zip'
+
+call vundle#end()
 
 filetype plugin indent on
 
