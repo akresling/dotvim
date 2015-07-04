@@ -4,6 +4,7 @@ let g:solarized_termtrans=1
 set ruler
 set cc=100
 highlight ColorColumn ctermbg=lightgray guibg=lightgray
+set t_Co=256
 colorscheme harlequin
 set antialias
 set guifont=Monaco:h14
