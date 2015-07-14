@@ -1,4 +1,3 @@
-syntax on
 set background=dark
 let g:solarized_termtrans=1
 set ruler
@@ -13,6 +12,7 @@ hi ColorColumn ctermbg=8
 
 imap jj <Esc>
 filetype off
+syntax on
 set nocompatible
 set backspace=2
 set ignorecase
@@ -67,7 +67,6 @@ let g:syntastic_java_javac_classpath = "~/map_to_object/src/**:/Library/Java/Ext
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_php_phpcs_args='--report=csv --standard=PSR2'
 let g:syntastic_php_phpmd_post_args='~/ashley/ashley/common-new/build/phpmd.xml'
 
 " basic rules are used for most of pinf, full rules used for api code
@@ -77,9 +76,6 @@ let g:syntastic_full=['php', 'phpmd', 'phpcs']
 " default to basic rules
 let g:syntastic_php_checkers=g:syntastic_basic
 "
-" in api, common-new folders, check all aspects
-autocmd BufRead,BufNewFile ~/ashley/ashley/common-new/* let g:syntastic_php_checkers=g:syntastic_full
-autocmd BufRead,BufNewFile ~/ashley/ashley/api/* let g:syntastic_php_checkers=g:syntastic_full
 
 function! TogglePHPCS()
     if g:syntastic_php_checkers == g:syntastic_full
@@ -120,8 +116,10 @@ Plugin 'git://github.com/Lokaltog/vim-powerline.git'
 Plugin 'fugitive.vim'
 Plugin 'Syntastic'
 Plugin 'bufexplorer.zip'
+Plugin 'VimClojure'
 
 call vundle#end()
 
 filetype plugin indent on
 
+au BufNewFile,BufRead *.clj set filetype=clojure
