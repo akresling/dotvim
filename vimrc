@@ -117,6 +117,7 @@ Plugin 'fugitive.vim'
 Plugin 'Syntastic'
 Plugin 'bufexplorer.zip'
 Plugin 'VimClojure'
+Plugin 'git://github.com/tpope/vim-fireplace.git'
 
 call vundle#end()
 

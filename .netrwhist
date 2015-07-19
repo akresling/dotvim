@@ -1,3 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/AKresling/Documents/artem-k.github.io/assets/css'
+let g:netrw_dirhist_cnt =0
