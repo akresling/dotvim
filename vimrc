@@ -67,9 +67,7 @@ let g:syntastic_java_javac_classpath = "~/map_to_object/src/**:/Library/Java/Ext
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_php_phpmd_post_args='~/ashley/ashley/common-new/build/phpmd.xml'
 
-" basic rules are used for most of pinf, full rules used for api code
 let g:syntastic_basic=['php', 'phpmd']
 let g:syntastic_full=['php', 'phpmd', 'phpcs']
 
