@@ -1,10 +1,8 @@
-set background=dark
-let g:solarized_termtrans=1
 set ruler
 set cc=100
 highlight ColorColumn ctermbg=lightgray guibg=lightgray
-set t_Co=256
 colorscheme harlequin
+set t_Co=16
 set antialias
 set guifont=Monaco:h14
 
@@ -52,7 +50,6 @@ set list
 set listchars=tab:♪\ ,trail:∘
 
 set laststatus=2
-set t_Co=256
 "
 autocmd BufRead,BufNewFile *.tpl        set filetype=html
 
