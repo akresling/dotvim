@@ -1,2 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/artemkresling/dev/go/src/stash.rubylife.com/rpd/rvs'
+let g:netrw_dirhist_2='/Users/artemkresling/dev/go/src/github.com/urfave/cli'
+let g:netrw_dirhist_3='/Users/artemkresling/dev/go/src/stash.rubylife.com/rpd/prodocker/utils'
+let g:netrw_dirhist_4='/Users/artemkresling/dev/go/src/stash.rubylife.com/rpd/prodocker'
+let g:netrw_dirhist_5='/Users/artemkresling/dev/go/src/stash.rubylife.com/rpd/prodocker/provision'
+let g:netrw_dirhist_6='/Users/artemkresling/dev/go/src/stash.rubylife.com/mic/goevents.git'

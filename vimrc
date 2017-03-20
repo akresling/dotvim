@@ -1,12 +1,34 @@
 set ruler
-set cc=100
+set cc=80
 highlight ColorColumn ctermbg=lightgray guibg=lightgray
-colorscheme harlequin
-set t_Co=16
+colorscheme janah
+set background=dark
+set t_Co=256
 set antialias
 set guifont=Monaco:h14
 
 hi ColorColumn ctermbg=8
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_autosave = 1
+
+" https://sanctum.geek.nz/arabesque/vim-anti-patterns/
+" Lets practice not using the arrow keys
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
 
 imap jj <Esc>
 filetype off
@@ -47,8 +69,8 @@ filetype plugin on
 set expandtab
 
 set list
-set listchars=tab:♪\ ,trail:∘
-
+set listchars=trail:∘
+"set listchars=tab:♪
 set laststatus=2
 "
 autocmd BufRead,BufNewFile *.tpl        set filetype=html
@@ -58,29 +80,6 @@ let g:ctrlp_user_command=['.git/', 'cd %s && git ls-files . -co --exclude-standa
 
 "let g:Powerline_theme = 'solarized256'
 "let g:Powerline_stl_path_style = 'full'
-
-"javac syntastic classpath definition
-let g:syntastic_java_javac_classpath = "~/map_to_object/src/**:/Library/Java/Extensions/*.jar"
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-
-let g:syntastic_basic=['php', 'phpmd']
-let g:syntastic_full=['php', 'phpmd', 'phpcs']
-
-" default to basic rules
-let g:syntastic_php_checkers=g:syntastic_basic
-"
-
-function! TogglePHPCS()
-    if g:syntastic_php_checkers == g:syntastic_full
-        let g:syntastic_php_checkers = g:syntastic_basic
-        echo "PHPCS Disabled"
-    else
-        let g:syntastic_php_checkers = g:syntastic_full
-        echo "PHPCS Enabled"
-    endif
-endfun
 
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -94,6 +93,16 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunc
+
+nnoremap <Leader>rn <Esc>:call NumberToggle()<cr>
 
 let g:Powerline_symbols_override = {
         \ 'BRANCH': [0x2213],
@@ -109,13 +118,22 @@ Plugin 'ctrlp.vim'
 Plugin 'ack.vim'
 Plugin 'git://github.com/Lokaltog/vim-powerline.git'
 Plugin 'fugitive.vim'
-Plugin 'Syntastic'
 Plugin 'bufexplorer.zip'
 Plugin 'VimClojure'
+Plugin 'fatih/vim-go'
 Plugin 'git://github.com/tpope/vim-fireplace.git'
+Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()
 
 filetype plugin indent on
-
+au BufNewFile,BufRead *.ex,*.exs set filetype=elixir
 au BufNewFile,BufRead *.clj set filetype=clojure
+au FileType go set nolist
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+"if has("autocmd")
+"   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+"      \| exe "normal! g'\"" | endif
+"endif
